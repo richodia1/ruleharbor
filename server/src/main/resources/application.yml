@@ -1,0 +1,35 @@
+server:
+  address: ${API_BIND_ADDRESS:127.0.0.1}
+  port: ${API_PORT:8190}
+  servlet:
+    session:
+      cookie:
+        name: RULEHARBOR_SESSION
+        http-only: true
+        same-site: strict
+spring:
+  application:
+    name: ruleharbor
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://127.0.0.1:5550/ruleharbor}
+    username: ${POSTGRES_USER:ruleharbor}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+      accept-float-as-int: false
+  mvc:
+    problemdetails:
+      enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
